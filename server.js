@@ -1,10 +1,11 @@
 // server.js
 require('dotenv').config(); // Load environment variables first
+
 const express = require('express'); // Import Express
 const cors = require('cors'); // Import CORS middleware
 const { connectToDB } = require('./database/mongo'); // Import DB connection
 const routes = require('./routes/index'); // Import main routes
-const contactRoute = require('./routes/contactRoute'); // Import professionalRoute
+const contactRoute = require('./routes/contactRoute'); // Import contactRoute
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -12,6 +13,9 @@ const PORT = process.env.PORT || 8080;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Swagger setup
+require('./swagger')(app); // Initialize Swagger documentation
 
 // Routes
 app.use('/', routes);

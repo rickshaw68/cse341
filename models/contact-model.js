@@ -21,15 +21,35 @@ async function getContactById(id) {
 }
 
 /* ************************************
- *  Create a contact (for future use)
+ *  Create a contact 
  * ************************************ */
-//async function addContact(contact) {
-//  const db = getDB()
-//  const result = await db.collection(COLLECTION).insertOne(contact)
-//  return { insertedId: result.insertedId }
-//}
+async function addContact(contact) {
+  const db = getDB()
+  const result = await db.collection(COLLECTION).insertOne(contact)
+  return { insertedId: result.insertedId }
+}
+
+/* ************************************
+ *  Update a contact by _id 
+ * ************************************ */
+async function updateContact(id, contact) {
+  const db = getDB()
+  const result = await db.collection(COLLECTION).replaceOne({ _id: new ObjectId(id) }, contact)
+  return { modifiedCount: result.modifiedCount }
+}
+/* ************************************
+ *  Delete a contact by _id 
+ * ************************************ */
+async function deleteContact(id) {
+  const db = getDB()
+  const result = await db.collection(COLLECTION).deleteOne({ _id: new ObjectId(id) })
+  return { deletedCount: result.deletedCount }
+}
 
 module.exports = {
   getAllContacts,
-  getContactById
+  getContactById,
+  addContact,
+  updateContact,
+  deleteContact
 }

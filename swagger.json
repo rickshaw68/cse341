@@ -6,9 +6,8 @@
     "description": "API for managing contacts"
   },
   "servers": [
-    { "url": "http://localhost:8080", "description": "Local server" },
-    { "url": "https://cse341-ckvy.onrender.com", "description": "Render" }
-  ],
+  { "url": "/", "description": "Current server" }
+],
   "tags": [{ "name": "Contacts", "description": "CRUD operations for contacts" }],
   "paths": {
     "/contacts": {
